@@ -62,9 +62,3 @@ npm run start
 - `/api/user/recipes/<user_id>` - Get user recipes
 - `/api/user/favorites/<user_id>` - Get user favorites
 
-## Testing
-Please specify if you want critical-path testing or thorough testing of the application.
-
----
-
-Feel free to customize this README further as needed.
