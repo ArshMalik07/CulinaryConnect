@@ -1,0 +1,370 @@
+import { Recipe } from '../types/recipe';
+
+// Mock data for recipes
+const mockRecipes: Recipe[] = [
+  {
+    id: '1',
+    title: 'Classic Spaghetti Carbonara',
+    description: 'A traditional Italian pasta dish with eggs, cheese, pancetta, and black pepper.',
+    author: 'Chef Maria',
+    image: 'https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Pasta',
+    cookTime: 25,
+    prepTime: 15,
+    difficulty: 'Medium',
+    servings: 4,
+    defaultServings: 4,
+    rating: 4.8,
+    reviews: 356,
+    ingredients: [
+      { name: 'Spaghetti', amount: 400, unit: 'g' },
+      { name: 'Eggs', amount: 4, unit: '' },
+      { name: 'Pancetta', amount: 150, unit: 'g' },
+      { name: 'Pecorino Romano', amount: 50, unit: 'g' },
+      { name: 'Parmesan', amount: 50, unit: 'g' },
+      { name: 'Black pepper', amount: 2, unit: 'tsp' },
+      { name: 'Salt', amount: 1, unit: 'tsp' }
+    ],
+    instructions: [
+      'Bring a large pot of salted water to boil and cook the spaghetti according to package instructions until al dente.',
+      'While the pasta is cooking, whisk eggs in a bowl with grated cheese and black pepper.',
+      'Cut the pancetta into small cubes and cook in a pan until crispy.',
+      'Drain the pasta, reserving a cup of the pasta water.',
+      'Working quickly, add the hot pasta to the pan with pancetta, remove from heat, and toss well.',
+      'Add the egg and cheese mixture, stirring vigorously to create a creamy sauce. Add pasta water as needed to reach desired consistency.',
+      'Serve immediately with extra cheese and black pepper on top.'
+    ],
+    notes: 'The key to a perfect carbonara is to work quickly and keep the pasta hot to cook the eggs without scrambling them.',
+    tags: ['Italian', 'Pasta', 'Quick', 'Dinner'],
+    nutrition: {
+      calories: '550 kcal',
+      protein: '25g',
+      carbs: '60g',
+      fat: '22g'
+    },
+    createdAt: '2023-08-15T12:00:00Z',
+    updatedAt: '2023-08-15T12:00:00Z'
+  },
+  {
+    id: '2',
+    title: 'Avocado Toast with Poached Egg',
+    description: 'Creamy avocado spread on toasted bread topped with a perfectly poached egg.',
+    author: 'Health Guru',
+    image: 'https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Breakfast',
+    cookTime: 15,
+    prepTime: 5,
+    difficulty: 'Easy',
+    servings: 2,
+    defaultServings: 2,
+    rating: 4.5,
+    reviews: 128,
+    ingredients: [
+      { name: 'Ripe avocado', amount: 1, unit: '' },
+      { name: 'Whole grain bread', amount: 2, unit: 'slices' },
+      { name: 'Eggs', amount: 2, unit: '' },
+      { name: 'Lemon juice', amount: 1, unit: 'tsp' },
+      { name: 'Red pepper flakes', amount: 0.5, unit: 'tsp' },
+      { name: 'Salt', amount: 0.5, unit: 'tsp' },
+      { name: 'Black pepper', amount: 0.25, unit: 'tsp' }
+    ],
+    instructions: [
+      'Toast the bread slices until golden and crispy.',
+      'Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.',
+      'Add lemon juice, salt, and pepper to the avocado and mash with a fork until slightly chunky.',
+      'Bring a pot of water to a gentle simmer. Add a splash of vinegar.',
+      'Crack each egg into a small bowl, then carefully slide into the simmering water.',
+      'Poach for 3-4 minutes for a runny yolk, then remove with a slotted spoon.',
+      'Spread the avocado mixture on the toast, top with a poached egg, and sprinkle with red pepper flakes.'
+    ],
+    tags: ['Breakfast', 'Healthy', 'Vegetarian', 'Quick'],
+    nutrition: {
+      calories: '320 kcal',
+      protein: '12g',
+      carbs: '25g',
+      fat: '20g'
+    },
+    createdAt: '2023-09-10T08:30:00Z',
+    updatedAt: '2023-09-10T08:30:00Z'
+  },
+  {
+    id: '3',
+    title: 'Thai Green Curry with Chicken',
+    description: 'A fragrant and spicy Thai curry with tender chicken and fresh vegetables.',
+    author: 'Spice Lover',
+    image: 'https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Main Dishes',
+    cookTime: 30,
+    prepTime: 20,
+    difficulty: 'Medium',
+    servings: 4,
+    defaultServings: 4,
+    rating: 4.7,
+    reviews: 203,
+    ingredients: [
+      { name: 'Chicken breast', amount: 500, unit: 'g' },
+      { name: 'Green curry paste', amount: 3, unit: 'tbsp' },
+      { name: 'Coconut milk', amount: 400, unit: 'ml' },
+      { name: 'Bamboo shoots', amount: 200, unit: 'g' },
+      { name: 'Bell peppers', amount: 2, unit: '' },
+      { name: 'Thai basil leaves', amount: 1, unit: 'handful' },
+      { name: 'Fish sauce', amount: 2, unit: 'tbsp' },
+      { name: 'Palm sugar', amount: 1, unit: 'tbsp' },
+      { name: 'Lime leaves', amount: 4, unit: '' }
+    ],
+    instructions: [
+      'Cut the chicken into bite-sized pieces and slice the bell peppers.',
+      'Heat a large wok or pan over medium-high heat and add a tablespoon of oil.',
+      'Add the green curry paste and stir-fry for 1 minute until fragrant.',
+      'Add the chicken and stir-fry until it starts to change color.',
+      'Pour in the coconut milk, add lime leaves, and bring to a simmer.',
+      'Add bamboo shoots and bell peppers, then simmer for 10-15 minutes until the chicken is cooked through.',
+      'Season with fish sauce and palm sugar to taste.',
+      'Stir in Thai basil leaves just before serving.',
+      'Serve hot with steamed jasmine rice.'
+    ],
+    notes: 'Adjust the amount of curry paste to your preferred spice level. For a vegetarian version, substitute chicken with tofu.',
+    tags: ['Thai', 'Curry', 'Spicy', 'Dinner'],
+    nutrition: {
+      calories: '420 kcal',
+      protein: '30g',
+      carbs: '15g',
+      fat: '28g'
+    },
+    createdAt: '2023-07-20T18:15:00Z',
+    updatedAt: '2023-07-20T18:15:00Z'
+  },
+  {
+    id: '4',
+    title: 'Classic Chocolate Chip Cookies',
+    description: 'Soft and chewy cookies with melty chocolate chips, perfect for any occasion.',
+    author: 'Sweet Baker',
+    image: 'https://images.pexels.com/photos/1028714/pexels-photo-1028714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Dessert',
+    cookTime: 12,
+    prepTime: 15,
+    difficulty: 'Easy',
+    servings: 24,
+    defaultServings: 24,
+    rating: 4.9,
+    reviews: 512,
+    ingredients: [
+      { name: 'Butter', amount: 230, unit: 'g' },
+      { name: 'Brown sugar', amount: 200, unit: 'g' },
+      { name: 'White sugar', amount: 100, unit: 'g' },
+      { name: 'Eggs', amount: 2, unit: '' },
+      { name: 'Vanilla extract', amount: 2, unit: 'tsp' },
+      { name: 'All-purpose flour', amount: 350, unit: 'g' },
+      { name: 'Baking soda', amount: 1, unit: 'tsp' },
+      { name: 'Salt', amount: 0.5, unit: 'tsp' },
+      { name: 'Chocolate chips', amount: 300, unit: 'g' }
+    ],
+    instructions: [
+      'Preheat oven to 350°F (175°C) and line baking sheets with parchment paper.',
+      'In a large bowl, cream together the butter, brown sugar, and white sugar until light and fluffy.',
+      'Beat in the eggs one at a time, then stir in the vanilla.',
+      'In a separate bowl, whisk together flour, baking soda, and salt.',
+      'Gradually add the dry ingredients to the wet ingredients and mix until just combined.',
+      'Fold in the chocolate chips.',
+      'Drop rounded tablespoons of dough onto the prepared baking sheets.',
+      'Bake for 10-12 minutes, or until edges are lightly golden.',
+      'Allow cookies to cool on the baking sheet for 5 minutes before transferring to a wire rack.'
+    ],
+    notes: 'For extra soft cookies, slightly underbake them. They will continue cooking on the hot baking sheet after removing from the oven.',
+    tags: ['Dessert', 'Cookies', 'Baking', 'Chocolate'],
+    nutrition: {
+      calories: '180 kcal',
+      protein: '2g',
+      carbs: '24g',
+      fat: '9g'
+    },
+    createdAt: '2023-06-05T14:20:00Z',
+    updatedAt: '2023-06-05T14:20:00Z'
+  },
+  {
+    id: '5',
+    title: 'Fresh Summer Gazpacho',
+    description: 'A refreshing cold soup made with ripe tomatoes and vegetables, perfect for hot summer days.',
+    author: 'Garden Chef',
+    image: 'https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Soup',
+    cookTime: 0,
+    prepTime: 20,
+    difficulty: 'Easy',
+    servings: 6,
+    defaultServings: 6,
+    rating: 4.6,
+    reviews: 87,
+    ingredients: [
+      { name: 'Ripe tomatoes', amount: 1, unit: 'kg' },
+      { name: 'Cucumber', amount: 1, unit: '' },
+      { name: 'Red bell pepper', amount: 1, unit: '' },
+      { name: 'Red onion', amount: 0.5, unit: '' },
+      { name: 'Garlic cloves', amount: 2, unit: '' },
+      { name: 'Olive oil', amount: 3, unit: 'tbsp' },
+      { name: 'Red wine vinegar', amount: 2, unit: 'tbsp' },
+      { name: 'Bread, crusts removed', amount: 100, unit: 'g' },
+      { name: 'Salt', amount: 1, unit: 'tsp' },
+      { name: 'Black pepper', amount: 0.5, unit: 'tsp' }
+    ],
+    instructions: [
+      'Roughly chop all vegetables into chunks.',
+      'Place the bread in a bowl, cover with water, and let soak for 5 minutes. Squeeze out excess water.',
+      'In a blender, combine vegetables, soaked bread, olive oil, vinegar, salt, and pepper.',
+      'Blend until smooth, working in batches if necessary.',
+      'Taste and adjust seasoning as needed.',
+      'Refrigerate for at least 2 hours or overnight to allow flavors to develop.',
+      'Serve cold, garnished with diced vegetables, croutons, and a drizzle of olive oil.'
+    ],
+    notes: 'For the best flavor, use the ripest summer tomatoes you can find. The gazpacho can be stored in the refrigerator for up to 3 days.',
+    tags: ['Soup', 'Summer', 'Vegetarian', 'No-Cook'],
+    nutrition: {
+      calories: '120 kcal',
+      protein: '3g',
+      carbs: '15g',
+      fat: '7g'
+    },
+    createdAt: '2023-07-12T16:45:00Z',
+    updatedAt: '2023-07-12T16:45:00Z'
+  },
+  {
+    id: '6',
+    title: 'Vegetable Stir Fry with Tofu',
+    description: 'A quick and healthy stir fry loaded with colorful vegetables and protein-rich tofu.',
+    author: 'Veggie Lover',
+    image: 'https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    category: 'Vegetarian',
+    cookTime: 15,
+    prepTime: 20,
+    difficulty: 'Easy',
+    servings: 4,
+    defaultServings: 4,
+    rating: 4.5,
+    reviews: 156,
+    ingredients: [
+      { name: 'Firm tofu', amount: 400, unit: 'g' },
+      { name: 'Broccoli florets', amount: 2, unit: 'cups' },
+      { name: 'Carrots', amount: 2, unit: '' },
+      { name: 'Bell peppers', amount: 2, unit: '' },
+      { name: 'Snow peas', amount: 1, unit: 'cup' },
+      { name: 'Garlic', amount: 3, unit: 'cloves' },
+      { name: 'Ginger', amount: 1, unit: 'tbsp' },
+      { name: 'Soy sauce', amount: 3, unit: 'tbsp' },
+      { name: 'Sesame oil', amount: 1, unit: 'tbsp' },
+      { name: 'Cornstarch', amount: 1, unit: 'tsp' },
+      { name: 'Vegetable oil', amount: 2, unit: 'tbsp' }
+    ],
+    instructions: [
+      'Press the tofu between paper towels to remove excess moisture, then cut into cubes.',
+      'Slice the carrots and bell peppers, and chop the garlic and ginger.',
+      'In a small bowl, mix soy sauce, sesame oil, and cornstarch to make the sauce.',
+      'Heat 1 tablespoon of oil in a wok or large pan over high heat.',
+      'Add tofu and cook until golden on all sides, then remove and set aside.',
+      'Add remaining oil, then add garlic and ginger and stir-fry for 30 seconds.',
+      'Add vegetables, starting with the ones that take longer to cook (carrots, broccoli).',
+      'Stir-fry for 4-5 minutes until vegetables are tender-crisp.',
+      'Return tofu to the pan, add the sauce, and toss to coat everything evenly.',
+      'Cook for another minute until the sauce thickens slightly.',
+      'Serve hot over rice or noodles.'
+    ],
+    tags: ['Vegetarian', 'Asian', 'Healthy', 'Quick'],
+    nutrition: {
+      calories: '280 kcal',
+      protein: '18g',
+      carbs: '22g',
+      fat: '15g'
+    },
+    createdAt: '2023-08-25T19:30:00Z',
+    updatedAt: '2023-08-25T19:30:00Z'
+  }
+];
+
+// Mock categories
+const mockCategories = [
+  { id: '1', name: 'Breakfast', image: 'https://images.pexels.com/photos/103124/pexels-photo-103124.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '2', name: 'Lunch', image: 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '3', name: 'Dinner', image: 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '4', name: 'Dessert', image: 'https://images.pexels.com/photos/1028714/pexels-photo-1028714.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '5', name: 'Vegetarian', image: 'https://images.pexels.com/photos/1410235/pexels-photo-1410235.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '6', name: 'Quick & Easy', image: 'https://images.pexels.com/photos/793765/pexels-photo-793765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '7', name: 'Pasta', image: 'https://images.pexels.com/photos/1527603/pexels-photo-1527603.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '8', name: 'Seafood', image: 'https://images.pexels.com/photos/725991/pexels-photo-725991.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '9', name: 'Soup', image: 'https://images.pexels.com/photos/1618898/pexels-photo-1618898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' },
+  { id: '10', name: 'Healthy', image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }
+];
+
+// Function to simulate delay
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Get featured recipes
+export const fetchFeaturedRecipes = async (): Promise<Recipe[]> => {
+  await delay(800);
+  return mockRecipes.slice(0, 3);
+};
+
+// Get popular categories
+export const fetchPopularCategories = async () => {
+  await delay(600);
+  return mockCategories;
+};
+
+// Get all recipes with optional filters
+export const fetchRecipes = async (filters: Record<string, any> = {}): Promise<Recipe[]> => {
+  await delay(1000);
+  
+  let filteredRecipes = [...mockRecipes];
+  
+  if (filters.search) {
+    const searchTerm = filters.search.toLowerCase();
+    filteredRecipes = filteredRecipes.filter(recipe => 
+      recipe.title.toLowerCase().includes(searchTerm) || 
+      recipe.description.toLowerCase().includes(searchTerm)
+    );
+  }
+  
+  if (filters.category) {
+    filteredRecipes = filteredRecipes.filter(recipe => 
+      recipe.category === filters.category
+    );
+  }
+  
+  if (filters.cookTime) {
+    filteredRecipes = filteredRecipes.filter(recipe => 
+      recipe.cookTime <= parseInt(filters.cookTime)
+    );
+  }
+  
+  if (filters.rating && filters.rating > 0) {
+    filteredRecipes = filteredRecipes.filter(recipe => 
+      recipe.rating >= filters.rating
+    );
+  }
+  
+  return filteredRecipes;
+};
+
+// Get a single recipe by ID
+export const fetchRecipeById = async (id: string): Promise<Recipe> => {
+  await delay(800);
+  const recipe = mockRecipes.find(recipe => recipe.id === id);
+  
+  if (!recipe) {
+    throw new Error('Recipe not found');
+  }
+  
+  return recipe;
+};
+
+// Get recipes created by a user
+export const fetchUserRecipes = async (userId: string): Promise<Recipe[]> => {
+  await delay(700);
+  // For mock purposes, we'll return a subset of recipes
+  return mockRecipes.slice(0, 2);
+};
+
+// Get recipes favorited by a user
+export const fetchUserFavorites = async (userId: string): Promise<Recipe[]> => {
+  await delay(700);
+  // For mock purposes, we'll return a subset of recipes
+  return mockRecipes.slice(2, 5);
+};
